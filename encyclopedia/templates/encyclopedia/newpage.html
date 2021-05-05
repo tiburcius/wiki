@@ -1,0 +1,18 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia {{title}} / {{content}}
+{% endblock %}
+
+{% block body %}
+    <h1>Create New Page</h1>
+
+    <form action="{% url 'wiki:savepage' %}" method="post">
+			   {% csrf_token %} 
+                    <input type="text" name="title" placeholder="Title of the new page" input pattern=".{1,}" required title="1 characters minimum" >
+					<br/><br/>
+					<textarea style="width:1000px; height:400px" name="content" placeholder="Content of the new page" input pattern=".{1,}" required title="1 characters minimum" >{{content}}</textarea><br/>
+					<input type="submit" value="Save" style="margin-top:5px;padding:0px 15px 0px 15px">
+                </form>
+
+{% endblock %}

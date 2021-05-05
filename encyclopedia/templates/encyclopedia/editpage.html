@@ -1,0 +1,18 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia {{title}} / {{content2}}
+{% endblock %}
+
+{% block body %}
+    <h1>Edit entry <span style="color:darkblue">{{title}}</span></h1>
+
+    <form action="{% url 'wiki:savechange' %}" method="post">
+			   {% csrf_token %} 
+                    <input type="hidden" name="title"  value={{title}}>
+					<br/><br/>
+					<textarea style="width:1000px; height:400px" name="content" placeholder="Content of the new page" input pattern=".{1,}" required title="1 characters minimum" >{{content}}</textarea><br/>
+					<input type="submit" value="Save" style="margin-top:5px;padding:0px 15px 0px 15px">
+                </form>
+
+{% endblock %}
